@@ -1,0 +1,35 @@
+{
+	"index.html": {
+		"resources": [
+			"chatList.html",
+			"contact.html"
+		],
+		"refer": [
+			"contact.html",
+			"me.html",
+			"chatList.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"login.html",
+			"index.html"
+		]
+	},
+	"me.html": {
+		"refer": [
+			"mynickname.html",
+			"login.html"
+		]
+	},
+	"contact.html": {
+		"refer": [
+			"searchFriends.html"
+		]
+	},
+	"searchFriends.html": {
+		"refer": [
+			"searchFriendsResult.html"
+		]
+	}
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/header.css" />
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+      	
+      	mui.plusReady(function() {
+      		plus.navigator.setStatusBarStyle("light");
+      		plus.navigator.setStatusBarBackground("#FF5053");
+      	});
+    </script>
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav title">
+		<h1 class="mui-title title-color">Message</h1>
+	</header>
+	
+	<nav class="mui-bar mui-bar-tab">
+	    <a class="mui-tab-item" tabindex="0">
+	        <span class="mui-icon mui-icon-contact"></span>
+	        <span class="mui-tab-label">friends</span>
+	    </a>
+	    <a class="mui-tab-item mui-active" tabindex="1">
+	        <span class="mui-icon mui-icon-paperplane"></span>
+	        <span class="mui-tab-label">msg</span>
+	    </a>
+	    <a class="mui-tab-item" tabindex="2">
+	        <span class="mui-icon mui-icon-person"></span>
+	        <span class="mui-tab-label">me</span>
+	    </a>
+	</nav>
+	
+	<script type="text/javascript">
+		var messageArray = [
+			{
+				pageId: "contact.html",
+				pageUrl: "contact.html"
+			},
+			{
+				pageId: "chatList.html",
+				pageUrl: "chatList.html"
+			},
+			{
+				pageId: "me.html",
+				pageUrl: "me.html"
+			}
+		];
+		
+		var messageStyle = {
+			top: "44",
+			bottom: "50.4"
+		}
+		
+		mui.plusReady(function() {
+			
+			// 禁止返回到登录注册页面
+			mui.back = function() {
+				return false;
+			}
+			
+			// 获取当前的webview对象
+			var indexWebview = plus.webview.currentWebview()
+			
+			// 向当前的主页webview追加子页的3张webview对象
+			for (var i = 0; i < messageArray.length; i++) {
+				var messagePage = plus.webview.create(messageArray[i].pageUrl,
+					messageArray[i].pageId, messageStyle);
+				
+				// 隐藏创建的webview
+				messagePage.hide();
+				
+				// 追加每一个子页面到当前主页面
+				indexWebview.append(messagePage);
+			}
+			
+			// 显示页面
+			plus.webview.show(messageArray[1].pageId);
+			
+			// 批量绑定tab事件，展示不同的页面
+			mui(".mui-bar-tab").on("tap", "a", function() {
+				var tabindex = this.getAttribute("tabindex");
+				
+				// 显示点击的tab选项对应的页面，使用fade-out动画进行页面隐藏，动画200ms
+				plus.webview.show(messageArray[tabindex].pageId, "fade-in", 200);
+				
+				// 隐藏其余的tab
+				for (var i = 0;i < messageArray.length; i++) {
+					if (i != tabindex) {
+						// 使用fade-out动画进行页面隐藏，动画200ms
+						plus.webview.hide(messageArray[i].pageId, "fade-out", 200);
+					}
+				}
+			})
+		});
+	</script>
+</body>
+</html>
