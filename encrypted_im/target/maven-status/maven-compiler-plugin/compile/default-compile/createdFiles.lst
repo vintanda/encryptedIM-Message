@@ -1,0 +1,9 @@
+org\linux\encrypted_im\dao\FriendsRequestMapper.class
+org\linux\encrypted_im\EncryptedImApplication.class
+org\linux\encrypted_im\dao\UsersMapper.class
+org\linux\encrypted_im\entity\FriendsRequest.class
+org\linux\encrypted_im\entity\ChatMsg.class
+org\linux\encrypted_im\dao\MyFriendsMapper.class
+org\linux\encrypted_im\dao\ChatMsgMapper.class
+org\linux\encrypted_im\entity\MyFriends.class
+org\linux\encrypted_im\entity\Users.class
