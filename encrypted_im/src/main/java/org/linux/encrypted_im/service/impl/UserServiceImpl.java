@@ -6,6 +6,7 @@ import org.linux.encrypted_im.dao.UsersMapper;
 import org.linux.encrypted_im.dao.UsersMapperCustom;
 import org.linux.encrypted_im.entity.*;
 import org.linux.encrypted_im.entity.vo.FriendRequestVO;
+import org.linux.encrypted_im.entity.vo.MyFriendsVO;
 import org.linux.encrypted_im.enums.SearchFriendsStatusEnum;
 import org.linux.encrypted_im.idworker.Sid;
 import org.linux.encrypted_im.service.UserService;
@@ -217,6 +218,7 @@ public class UserServiceImpl implements UserService {
         deleteFriendRequest(sendUserId, acceptUserId);
     }
 
+
     @Transactional(propagation = Propagation.REQUIRED)
     void saveFriends(String sendUserId, String acceptUserId) {
         MyFriends myFriends = new MyFriends();
@@ -227,4 +229,12 @@ public class UserServiceImpl implements UserService {
         myFriendsMapper.insert(myFriends);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<MyFriendsVO> queryMyFriends(String userId) {
+
+        List<MyFriendsVO> myFriends = usersMapperCustom.queryMyFriends(userId);
+
+        return myFriends;
+    }
 }

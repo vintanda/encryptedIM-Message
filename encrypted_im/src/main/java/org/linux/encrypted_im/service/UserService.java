@@ -2,6 +2,7 @@ package org.linux.encrypted_im.service;
 
 import org.linux.encrypted_im.entity.Users;
 import org.linux.encrypted_im.entity.vo.FriendRequestVO;
+import org.linux.encrypted_im.entity.vo.MyFriendsVO;
 
 import java.util.List;
 
@@ -39,4 +40,8 @@ public interface UserService {
     //   2.逆向保存好友
     //   3.删除好友请求记录
     public void passFriendRequest(String sendUserId, String acceptUserId);
+
+    // 查询好友列表
+    public List<MyFriendsVO> queryMyFriends(String userId);
+
 }

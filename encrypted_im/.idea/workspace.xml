@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="393e267e-604f-4b39-929e-a0db0cedf9da" name="Default Changelist" comment="" />
+    <list default="true" id="393e267e-604f-4b39-929e-a0db0cedf9da" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/vo/MyFriendsVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/UsersMapperCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/UsersMapperCustom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UsersMapperCustom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UsersMapperCustom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/org/linux/encrypted_im/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/org/linux/encrypted_im/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mui/im-encrypted/chatList.html" beforeDir="false" afterPath="$PROJECT_DIR$/../mui/im-encrypted/chatList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mui/im-encrypted/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/../mui/im-encrypted/contact.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mui/im-encrypted/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../mui/im-encrypted/index.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,8 +41,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/UserService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="519">
-              <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+            <state relative-caret-position="518">
+              <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/vo/MyFriendsVO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="138">
+              <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/vo/UsersVO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -41,8 +77,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="213" column="32" selection-start-line="213" selection-start-column="32" selection-end-line="213" selection-end-column="32" />
+            <state relative-caret-position="202">
+              <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/UsersMapperCustom.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="299">
+              <caret line="13" column="59" lean-forward="true" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,10 +99,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UsersMapperCustom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="168" column="39" lean-forward="true" selection-start-line="168" selection-start-column="39" selection-end-line="168" selection-end-column="39" />
+            <state relative-caret-position="-679">
+              <caret line="169" column="7" lean-forward="true" selection-start-line="169" selection-start-column="7" selection-end-line="169" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,8 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/enums/OperatorFriendRequestTypeEnum.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="184">
+              <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
               <folding>
                 <element signature="e#376#377#0" expanded="true" />
                 <element signature="e#403#404#0" expanded="true" />
@@ -88,12 +145,18 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>password</find>
+      <find>查询好友列表</find>
+      <find>myFriends</find>
+      <find>查询好友请求列表</find>
     </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/FriendsRequestMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/MyFriendsMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/websocket/WSServerInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/NettyBooter.java" />
@@ -136,14 +199,15 @@
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/utils/QRCodeUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/enums/SearchFriendsStatusEnum.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/vo/FriendRequestVO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/UsersMapperCustom.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/encryptedUtils/createKey.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/mapper/UsersMapperCustom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/encryptedUtils/createKeyUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/enums/OperatorFriendRequestTypeEnum.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/vo/MyFriendsVO.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/UserService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/UsersMapperCustom.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mapper/UsersMapperCustom.xml" />
       </list>
     </option>
   </component>
@@ -177,12 +241,13 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="970" />
     <option name="y" value="180" />
     <option name="width" value="1385" />
     <option name="height" value="745" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -365,16 +430,16 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557571373846" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1557676489651" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../test" />
+    <property name="last_opened_file_path" value="D:/software/git/Git/bin/git.exe" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.folding" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -541,7 +606,12 @@
       <workItem from="1557369021416" duration="2420000" />
       <workItem from="1557372964913" duration="41000" />
       <workItem from="1557470677049" duration="4911000" />
-      <workItem from="1557555331969" duration="9182000" />
+      <workItem from="1557555331969" duration="9190000" />
+      <workItem from="1557576725450" duration="206000" />
+      <workItem from="1557576947311" duration="170000" />
+      <workItem from="1557631051512" duration="3712000" />
+      <workItem from="1557665848436" duration="595000" />
+      <workItem from="1557672541619" duration="3242000" />
     </task>
     <servers />
   </component>
@@ -578,7 +648,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93216000" />
+    <option name="totallyTimeSpent" value="101149000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -590,10 +660,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" x="403" y="128" width="383" height="515" id="Project" order="0" visible="true" weight="0.27546915" />
+      <window_info content_ui="combo" x="403" y="128" width="383" height="515" id="Project" order="0" visible="true" weight="0.2955764" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -603,7 +673,7 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.042432815" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.28995755" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.601983" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.42432815" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -671,36 +741,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/FriendsRequestMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/ChatMsg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/utils/JSONUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="37" column="35" selection-start-line="37" selection-start-column="35" selection-end-line="37" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/encryptedUtils/Base64Util.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="169">
@@ -974,16 +1014,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/vo/UsersVO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="18" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/bo/UserBO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
@@ -1042,23 +1072,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/UsersMapperCustom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UsersMapperCustom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/vo/FriendRequestVO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="368">
@@ -1102,8 +1115,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/enums/OperatorFriendRequestTypeEnum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="8" column="20" lean-forward="true" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        <state relative-caret-position="184">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
           <folding>
             <element signature="e#376#377#0" expanded="true" />
             <element signature="e#403#404#0" expanded="true" />
@@ -1113,8 +1126,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="519">
-          <caret line="39" column="19" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+        <state relative-caret-position="518">
+          <caret line="43" column="13" lean-forward="true" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/MyFriendsMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="9" column="21" lean-forward="true" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/MyFriendsMapper.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/vo/UsersVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/dao/UsersMapperCustom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="59" lean-forward="true" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/entity/vo/MyFriendsVO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="6" column="5" lean-forward="true" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1123,8 +1176,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="213" column="32" selection-start-line="213" selection-start-column="32" selection-end-line="213" selection-end-column="32" />
+        <state relative-caret-position="202">
+          <caret line="234" lean-forward="true" selection-start-line="234" selection-end-line="234" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1133,11 +1186,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/linux/encrypted_im/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="168" column="39" lean-forward="true" selection-start-line="168" selection-start-column="39" selection-end-line="168" selection-end-column="39" />
+        <state relative-caret-position="-679">
+          <caret line="169" column="7" lean-forward="true" selection-start-line="169" selection-start-column="7" selection-end-line="169" selection-end-column="7" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mapper/UsersMapperCustom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
         </state>
       </provider>
     </entry>

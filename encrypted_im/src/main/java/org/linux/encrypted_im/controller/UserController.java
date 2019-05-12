@@ -3,6 +3,7 @@ package org.linux.encrypted_im.controller;
 import org.apache.commons.lang3.StringUtils;
 import org.linux.encrypted_im.entity.bo.UserBO;
 import org.linux.encrypted_im.entity.Users;
+import org.linux.encrypted_im.entity.vo.MyFriendsVO;
 import org.linux.encrypted_im.enums.OperatorFriendRequestTypeEnum;
 import org.linux.encrypted_im.enums.SearchFriendsStatusEnum;
 import org.linux.encrypted_im.service.UserService;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @RestController
 @RequestMapping("u")
@@ -191,5 +193,23 @@ public class UserController {
         }
 
         return JSONResult.ok();
+    }
+
+    /**
+     * @description 查询我的好友列表
+     */
+    @RequestMapping("/myFriends")
+    public JSONResult myFriends(String userId) throws Exception {
+
+        System.out.println("查询好友列表");
+        // 0. 判断userId不能为空
+        if (StringUtils.isBlank(userId)) {
+            return JSONResult.errorMsg("");
+        }
+
+        // 1.数据库查询好友列表
+        List<MyFriendsVO> myFriends = userService.queryMyFriends(userId);
+
+        return JSONResult.ok(myFriends);
     }
 }
