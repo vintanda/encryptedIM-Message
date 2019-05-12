@@ -192,7 +192,10 @@ public class UserController {
             userService.passFriendRequest(sendUserId, acceptUserId);
         }
 
-        return JSONResult.ok();
+        // 4.数据库查询好友列表
+        List<MyFriendsVO> myFriends = userService.queryMyFriends(acceptUserId);
+
+        return JSONResult.ok(myFriends);
     }
 
     /**
