@@ -63,6 +63,11 @@
 					loadingFriendRequests();
 				});
 				
+				// 添加自定义事件，刷新好友请求
+				window.addEventListener("refresh", function() {
+					loadingFriendRequests();
+				});
+				
 			});
 			
 			// 加载好友请求记录列表
@@ -79,7 +84,7 @@
 					headers:{'Content-Type':'application/json'},	              
 					success:function(data){
 						
-						console.log(JSON.stringify(data.data));
+						console.log("好友请求记录列表：" + JSON.stringify(data.data));
 						
 						//服务器返回响应
 						if (data.status == 200) {
@@ -127,7 +132,9 @@
 					timeout:10000,//超时时间设置为10秒；
 					headers:{'Content-Type':'application/json'},	              
 					success:function(data){
-						// TODO 通讯录
+						// 更新通讯录
+						var myFriendList = data.data;
+						app.setContactList(myFriendList);
 						
 						// 重新加载好友请求记录 如果对好有记录进行处理 那条记录就没辽~
 						loadingFriendRequests();

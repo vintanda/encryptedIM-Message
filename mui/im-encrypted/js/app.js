@@ -49,6 +49,50 @@ window.app = {
 	 */
 	userLogout: function() {
 		plus.storage.removeItem("userInfo");
+	},
+	
+	/**
+	 * 保存用户的联系人列表到本地（缓存）
+	 */
+	setContactList: function(contactList) {
+		var contactListStr = JSON.stringify(contactList);
+		plus.storage.setItem("contactList", contactListStr);
+	},
+	
+	/**
+	 * 获取本地缓存中的联系人列表
+	 */
+	getContactList: function() {
+		var contactListStr = plus.storage.getItem("contactList");
+		
+		if (!this.isNotNull(contactListStr)) {
+			return [];
+		}
+		
+		return JSON.parse(contactListStr);
+	},
+	
+	/**
+	 * 根据用户id，从本地的缓存（联系人列表）中获取朋友的信息
+	 */
+	getFriendFromContactList: function(friendId) {
+		var contactListStr = plus.storage.getItem("contactList");
+		
+		// 判断contactListStr是否为空
+		if (this.isNotNull(contactListStr)) {
+			// 不为空，则把用户信息返回
+			var contactList = JSON.parse(contactListStr);
+			for (var i = 0 ; i < contactList.length ; i ++) {
+				var friend = contactList[i];
+				if (friend.friendUserId == friendId) {
+					return friend;
+					break;
+				}
+			}
+		} else {
+			// 如果为空，直接返回null
+			return null;
+		}
 	}
 	
 }

@@ -97,7 +97,18 @@
 					}
 				}
 			})
+			
+			// 延迟加载
+			setTimeout("initData()", "1000");
+						
 		});
+
+		// 预加载
+		function initData() {
+			var chatlist = plus.webview.getWebviewById("chatList.html");
+			mui.fire(chatlist, "refresh");
+		}
+	
 	</script>
 </body>
 </html>
