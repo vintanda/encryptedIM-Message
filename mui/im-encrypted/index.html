@@ -18,7 +18,7 @@
 </head>
 <body>
 	<header class="mui-bar mui-bar-nav title">
-		<h1 class="mui-title title-color">Message</h1>
+		<h1 class="mui-title title-color" id="message_title">Message</h1>
 	</header>
 	
 	<nav class="mui-bar mui-bar-tab">
@@ -64,6 +64,9 @@
 				return false;
 			}
 			
+			// 对网络连接进行事件监听
+			netChangeSwitch();
+			
 			// 获取当前的webview对象
 			var indexWebview = plus.webview.currentWebview()
 			
@@ -102,6 +105,25 @@
 			setTimeout("initData()", "1000");
 						
 		});
+		
+		// 监听网络状态更改
+		function netChangeSwitch() {
+			document.addEventListener("netchange", function() {
+//				console.log("netchanged...");
+				
+				// 网络状态的获取及判断
+				var connectionStatus = plus.networkinfo.getCurrentType();
+				if (connectionStatus != 0 && connectionStatus != 1) {
+					// 重新打开网络连接时触发
+					var message_title = document.getElementById("message_title");
+					message_title.innerHTML = "Message";
+				} else {
+					// 关闭了网络连接后触发
+					var message_title = document.getElementById("message_title");
+					message_title.innerHTML = "Message（网络未连接）";
+				}
+			});
+		}
 
 		// 预加载
 		function initData() {

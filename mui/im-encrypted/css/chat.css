@@ -33,7 +33,7 @@
 }
 
 .msg-right-green {
-	background-color: #a0e759;
+	background-color: #FA8072;
 	font-size: 16px;
 }
 
@@ -86,7 +86,7 @@
 
 .msg-wrapper.left p:before {
 	right: -12px;
-	border-color: transparent #a0e759;
+	border-color: transparent #FA8072;
 	border-width: 0 0 12px 12px;
 }
 

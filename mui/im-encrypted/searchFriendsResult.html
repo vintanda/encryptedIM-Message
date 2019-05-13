@@ -10,10 +10,10 @@
 
 		<style>
 			#btn_add_friend {
-	        	background-color: #1aad19;
+	        	background-color: #FF5053;
 	        }
 	        #btn_add_friend:active {
-	            background-color: #128e12;
+	            background-color: #FA8072;
 	        }
 		</style>
 	</head>
@@ -44,8 +44,8 @@
 			<div style="text-align: center;">
 				<button id="btn_add_friend" type="button" class="mui-btn mui-btn-block" 
 					style="color: white;width: 90%;display: inline;padding: 12px 0">添加好友</button>
-				<button id="btn_add_friend" type="button" class="mui-btn mui-btn-block" 
-					style="color: white;width: 90%;display: inline;padding: 12px 0">临时聊天</button>
+				<button id="temp_session" type="button" class="mui-btn mui-btn-block" 
+					style="color: black;width: 90%;display: inline;padding: 12px 0">临时会话</button>
 				<button id="btn_back" type="button" class="mui-btn mui-btn-block" 
 					style="width: 90%;display: inline;padding: 12px 0">返回</button>
 			</div>
@@ -103,6 +103,22 @@
 						}
 					});
 					
+				});
+				
+				// 开启临时会话
+				var temp_session = document.getElementById("temp_session");
+				temp_session.addEventListener("tap", function() {
+					var friendUserId = yourFriend.id;
+					var friendNickname = yourFriend.nickname;
+					
+					mui.openWindow({
+						url: "chatting.html",
+						id: "chatting-" + friendUserId,
+						extras: {
+							friendUserId: friendUserId,
+							friendNickname: friendNickname
+						}
+					});
 				});
 				
 				// 绑定返回的函数

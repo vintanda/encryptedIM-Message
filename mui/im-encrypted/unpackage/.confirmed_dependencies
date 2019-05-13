@@ -24,12 +24,18 @@
 	},
 	"contact.html": {
 		"refer": [
-			"searchFriends.html"
+			"searchFriends.html",
+			"chatting.html"
 		]
 	},
 	"searchFriends.html": {
 		"refer": [
 			"searchFriendsResult.html"
+		]
+	},
+	"searchFriendsResult.html": {
+		"refer": [
+			"chatting.html"
 		]
 	}
 }

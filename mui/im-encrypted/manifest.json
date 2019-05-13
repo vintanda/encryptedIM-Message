@@ -157,7 +157,8 @@
 			"contact.html": {
 				"resources": [],
 				"refer": [
-					"searchFriends.html"
+					"searchFriends.html",
+					"chatting.html"
 				],
 				"priority": 0
 			},
@@ -165,6 +166,13 @@
 				"resources": [],
 				"refer": [
 					"searchFriendsResult.html"
+				],
+				"priority": 0
+			},
+			"searchFriendsResult.html": {
+				"resources": [],
+				"refer": [
+					"chatting.html"
 				],
 				"priority": 0
 			}
