@@ -1,14 +1,13 @@
 package org.linux.encrypted_im.service.impl;
 
-import org.linux.encrypted_im.dao.FriendsRequestMapper;
-import org.linux.encrypted_im.dao.MyFriendsMapper;
-import org.linux.encrypted_im.dao.UsersMapper;
-import org.linux.encrypted_im.dao.UsersMapperCustom;
+import org.linux.encrypted_im.dao.*;
 import org.linux.encrypted_im.entity.*;
 import org.linux.encrypted_im.entity.vo.FriendRequestVO;
 import org.linux.encrypted_im.entity.vo.MyFriendsVO;
+import org.linux.encrypted_im.enums.MsgSignFlagEnum;
 import org.linux.encrypted_im.enums.SearchFriendsStatusEnum;
 import org.linux.encrypted_im.idworker.Sid;
+import org.linux.encrypted_im.netty.ChatMsg;
 import org.linux.encrypted_im.service.UserService;
 import org.linux.encrypted_im.utils.QRCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private FriendsRequestMapper friendsRequestMapper;
+
+    @Autowired
+    private ChatMsgMapper chatMsgMapper;
 
     @Autowired
     private Sid sid;
@@ -218,7 +220,6 @@ public class UserServiceImpl implements UserService {
         deleteFriendRequest(sendUserId, acceptUserId);
     }
 
-
     @Transactional(propagation = Propagation.REQUIRED)
     void saveFriends(String sendUserId, String acceptUserId) {
         MyFriends myFriends = new MyFriends();
@@ -236,5 +237,23 @@ public class UserServiceImpl implements UserService {
         List<MyFriendsVO> myFriends = usersMapperCustom.queryMyFriends(userId);
 
         return myFriends;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    @Override
+    public String saveMsg(ChatMsg chatMsg) {
+
+        org.linux.encrypted_im.entity.ChatMsg msgDB = new org.linux.encrypted_im.entity.ChatMsg();
+        String msgId = sid.nextShort();
+        msgDB.setId(msgId);
+        msgDB.setAcceptUserId(chatMsg.getReceiverId());
+        msgDB.setSendUserId(chatMsg.getSenderId());
+        msgDB.setCreateTime(new Date());
+        msgDB.setSignFlag(MsgSignFlagEnum.unsign.type);
+        msgDB.setMsg(chatMsg.getMsg());
+
+        chatMsgMapper.insert(msgDB);
+
+        return msgId;
     }
 }

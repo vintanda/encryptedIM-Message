@@ -3,6 +3,7 @@ package org.linux.encrypted_im.service;
 import org.linux.encrypted_im.entity.Users;
 import org.linux.encrypted_im.entity.vo.FriendRequestVO;
 import org.linux.encrypted_im.entity.vo.MyFriendsVO;
+import org.linux.encrypted_im.netty.ChatMsg;
 
 import java.util.List;
 
@@ -43,5 +44,8 @@ public interface UserService {
 
     // 查询好友列表
     public List<MyFriendsVO> queryMyFriends(String userId);
+
+    // 存储聊天记录
+    public String saveMsg(ChatMsg chatMsg);
 
 }
