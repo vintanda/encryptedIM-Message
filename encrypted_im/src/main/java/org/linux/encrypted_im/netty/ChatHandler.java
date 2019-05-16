@@ -7,13 +7,14 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
+import org.apache.commons.lang3.StringUtils;
 import org.linux.encrypted_im.enums.MsgActionEnum;
 import org.linux.encrypted_im.service.UserService;
 import org.linux.encrypted_im.utils.JSONUtils;
-import org.linux.encrypted_im.utils.MD5Utils;
 import org.linux.encrypted_im.utils.SpringUtil;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 处理消息的handler
@@ -49,6 +50,16 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             // 2.1 当websocket第一次open的时候，初始化channel，把channel和userId进行关联
             String senderId = dataContent.getChatMsg().getSenderId();
             UserChannelRel.put(senderId, currentChannel);
+
+            // 测试
+            System.out.println("-------------------- CONNECT --------------------");
+            for (Channel c : users) {
+                System.out.println(c.id().asLongText());
+            }
+
+            // 打印所有UserChannelRel的userId和channelId
+            UserChannelRel.output();
+
         } else if (action == MsgActionEnum.CHAT.type) {
             // 2.2 聊天类型的消息，把聊天记录保存到数据库，同时标记是否被接受者接收到【标记未读】
             // get各种属性值
@@ -63,10 +74,44 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             chatMsg.setMsgId(msgId);
 
             // 发送消息给接受者
-
+            // 从UserChannelRel中获取接收方Channel对象
+            Channel receiverChannel = UserChannelRel.get(receiverId);
+            if (receiverChannel == null) {
+                // 用户离线
+            } else {
+                // 当receiverChannel不为空的时候，从ChannelGroup去查找对应的channel是否存在
+                Channel findChannel = users.find(receiverChannel.id());
+                if (findChannel != null) {
+                    // 用户在线
+                    receiverChannel.writeAndFlush(
+                            new TextWebSocketFrame(JSONUtils.objectToJson(chatMsg)));
+                } else {
+                    // 用户离线
+                }
+            }
 
         } else if (action == MsgActionEnum.SIGNED.type) {
             // 2.3 签收消息类型，针对具体的消息进行签收，修改数据库中对应消息的状态【标记已读】
+            UserService userService = (UserService) SpringUtil.getBean("userServiceImpl");
+            // 扩展字段在signed类型的消息中，代表需要去签收的消息id，逗号间隔
+            String msgIdsStr = dataContent.getExtand();
+            String[] msgIds = msgIdsStr.split(",");
+
+            List<String> msgIdList = new ArrayList<>();
+            for (String mid : msgIds) {
+                if (StringUtils.isNotBlank(mid)) {
+                    msgIdList.add(mid);
+                }
+            }
+
+            System.out.println(msgIdList.toString());
+
+            // 在有消息的时候对消息进行批量签收
+            if (msgIdList != null && !msgIdList.isEmpty() && msgIdList.size() > 0) {
+                // 批量签收
+                userService.updateMsgSigned(msgIdList);
+            }
+
         } else if (action == MsgActionEnum.KEEPALIVE.type) {
             // 2.4 心跳类型消息
         }

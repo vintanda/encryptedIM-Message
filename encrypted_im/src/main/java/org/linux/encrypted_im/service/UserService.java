@@ -48,4 +48,7 @@ public interface UserService {
     // 存储聊天记录
     public String saveMsg(ChatMsg chatMsg);
 
+    // 批量签收消息
+    public void updateMsgSigned(List<String> msgIdList);
+
 }

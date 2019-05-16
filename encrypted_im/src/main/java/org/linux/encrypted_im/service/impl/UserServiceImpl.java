@@ -256,4 +256,9 @@ public class UserServiceImpl implements UserService {
 
         return msgId;
     }
+
+    @Override
+    public void updateMsgSigned(List<String> msgIdList) {
+        usersMapperCustom.batchUpdateMsgSigned(msgIdList);
+    }
 }

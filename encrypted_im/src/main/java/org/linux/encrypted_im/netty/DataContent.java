@@ -20,5 +20,5 @@ public class DataContent implements Serializable {
     private ChatMsg chatMsg;
 
     // 扩展字段
-    private String extend;
+    private String extand;
 }
