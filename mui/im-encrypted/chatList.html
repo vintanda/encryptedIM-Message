@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 	<head>
@@ -80,6 +80,7 @@
 					if (window.WebSocket) {
 						
 						// 如果websocket对象存在并且处于打开状态，不需要再对websocket进行初始化操作了
+						// 改了 if (CHAT.socket != null && CHAT.socket != undefined && CHAT.socket.readyState == WebSocket.OPEN)
 						if (CHAT.socket != null && CHAT.socket != undefined
 								&& CHAT.socket.readyState == WebSocket.OPEN) {
 							return false;
@@ -94,11 +95,31 @@
 					}
 				},
 				chat: function(msg) {
-					// 如果websocket对象存在并且处于打开状态，发送消息， 否则 重连
+					// 如果当前websocket的状态是已打开，则直接发送， 否则重连
+					if (CHAT.socket != null && CHAT.socket != undefined  
+							&& CHAT.socket.readyState == WebSocket.OPEN) {
+							CHAT.socket.send(msg);
+					} else {
+						// 重连websocket
+						CHAT.init();
+						setTimeout("CHAT.reChat('" + msg + "')", "1000");
+					}
+				},
+				reChat: function(msg) {
+					console.log("rechat...");
 					CHAT.socket.send(msg);
 				},
 				wsopen: function() {
 					console.log("webSocket连接已建立");
+					
+					var me = app.getUserGlobalInfo();
+					
+					// 构建ChatMsg
+					var chatMsg = new app.ChatMsg(me.id, null, null, null);
+					// 构建DataContent
+					var dataContent = new app.DataContent(app.CONNECT, chatMsg, null);
+					// 发送webSocket
+					CHAT.chat(JSON.stringify(dataContent));
 				},
 				wsonmessage: function(e) {
 					console.log("接收到消息..." + e.data);
