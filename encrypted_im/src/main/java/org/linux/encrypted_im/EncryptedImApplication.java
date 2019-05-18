@@ -1,10 +1,12 @@
 package org.linux.encrypted_im;
 
 import org.linux.encrypted_im.dao.UsersMapper;
+import org.linux.encrypted_im.utils.SpringUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 // 扫描所有需要的包
 @ComponentScan(basePackages = {"org.linux"})
 public class EncryptedImApplication {
+
+    @Bean
+    public SpringUtil getSpringUtil() {
+        return new SpringUtil();
+    }
 
     @Autowired
     private UsersMapper usersMapper;

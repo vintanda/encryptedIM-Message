@@ -1,14 +1,24 @@
 package org.linux.encrypted_im.service.impl;
 
+import io.netty.channel.Channel;
+import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import org.apache.commons.codec.binary.Hex;
 import org.linux.encrypted_im.dao.*;
+import org.linux.encrypted_im.encryptedUtils.AESUtil;
 import org.linux.encrypted_im.entity.*;
 import org.linux.encrypted_im.entity.vo.FriendRequestVO;
 import org.linux.encrypted_im.entity.vo.MyFriendsVO;
+import org.linux.encrypted_im.enums.MsgActionEnum;
 import org.linux.encrypted_im.enums.MsgSignFlagEnum;
+import org.linux.encrypted_im.enums.OperatorFriendRequestTypeEnum;
 import org.linux.encrypted_im.enums.SearchFriendsStatusEnum;
 import org.linux.encrypted_im.idworker.Sid;
 import org.linux.encrypted_im.netty.ChatMsg;
+import org.linux.encrypted_im.netty.DataContent;
+import org.linux.encrypted_im.netty.UserChannelRel;
 import org.linux.encrypted_im.service.UserService;
+import org.linux.encrypted_im.utils.JSONResult;
+import org.linux.encrypted_im.utils.JSONUtils;
 import org.linux.encrypted_im.utils.QRCodeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -218,6 +228,17 @@ public class UserServiceImpl implements UserService {
 
         // 删除好友请求记录
         deleteFriendRequest(sendUserId, acceptUserId);
+
+        // 获取发送好友请求用户在线的情况下更新其好友列表
+        Channel sendChannel = UserChannelRel.get(sendUserId);
+        if (sendChannel != null) {
+            // 使用websocket主动推送消息到请求发起者，更新其通讯录列表
+            DataContent dataContent = new DataContent();
+            dataContent.setAction(MsgActionEnum.PULL_FRIEND.type);
+
+            sendChannel.writeAndFlush(
+                    new TextWebSocketFrame(JSONUtils.objectToJson(dataContent)));
+        }
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
@@ -250,7 +271,16 @@ public class UserServiceImpl implements UserService {
         msgDB.setSendUserId(chatMsg.getSenderId());
         msgDB.setCreateTime(new Date());
         msgDB.setSignFlag(MsgSignFlagEnum.unsign.type);
-        msgDB.setMsg(chatMsg.getMsg());
+
+        // 聊天记录加密方式 msgId+senderId拼接后的结果作为加密秘钥
+        try {
+            String encryptedMsg = Hex.encodeHexString(
+                    AESUtil.encrypt(chatMsg.getMsg(), msgId + chatMsg.getSenderId()));
+            msgDB.setMsg(encryptedMsg);
+            System.out.println("加密存储的聊天消息为：" + encryptedMsg);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         chatMsgMapper.insert(msgDB);
 
