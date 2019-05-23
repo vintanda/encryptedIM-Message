@@ -33,25 +33,7 @@
 		
 		<div id="msg-outter" class="mui-content">
 			<div id='msg'>
-				
-				<!--<div class="friend_lists">
-					<div class="header_img">
-						<img src="css/registLogin/default.jpg" width="40px" height="40px" />
-					</div>
-					<div class="msg-wrapper right">
-						<p class="msg-left-white">晚上过来吃饭？</p>
-					</div>
-				</div>
-
-				<div class="me_lists">
-					<div class="header_img">
-						<img src="css/registLogin/default.jpg" width="40px" height="40px" />
-					</div>
-					<div class="msg-wrapper left">
-						<p class="msg-right-green">好的，没问题！时间地点？</p>
-					</div>
-				</div>-->
-				
+								
 			</div>
 		</div>
 		
@@ -150,7 +132,11 @@
 //					wsWebView.evalJS("CHAT.chat('" + msg_text_val + "')");
 					wsWebView.evalJS("CHAT.chat('" + JSON.stringify(dataContent) + "')");
 					
+					// 保存聊天记录
 					app.saveUserChatHistory(me.id, friendUserId, msg_text_val, 1);
+					
+					// 保存聊天快照 --- 自己发送出去的 --- 已读
+					app.saveUserChatSnapshot(me.id, friendUserId, msg_text_val, true);
 //						receiveMsg("模拟接收消息");
 				});
 			});
