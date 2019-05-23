@@ -1,6 +1,7 @@
 package org.linux.encrypted_im.controller;
 
 import org.apache.commons.lang3.StringUtils;
+import org.linux.encrypted_im.entity.ChatMsg;
 import org.linux.encrypted_im.entity.bo.UserBO;
 import org.linux.encrypted_im.entity.Users;
 import org.linux.encrypted_im.entity.vo.MyFriendsVO;
@@ -214,5 +215,23 @@ public class UserController {
         List<MyFriendsVO> myFriends = userService.queryMyFriends(userId);
 
         return JSONResult.ok(myFriends);
+    }
+
+    /**
+     * @description: 用户获取未读消息列表
+     */
+    @RequestMapping("/getUnReadMsgList")
+    public JSONResult getUnReadMsgList(String acceptUserId) {
+
+        // 0.判断 userId 不能为空
+        if (StringUtils.isBlank(acceptUserId)) {
+            return JSONResult.errorMsg("");
+        }
+
+        // 查询列表
+        List<ChatMsg> unReadMsgList = userService.getUnReadMsgList(acceptUserId);
+
+        return JSONResult.ok(unReadMsgList);
+
     }
 }

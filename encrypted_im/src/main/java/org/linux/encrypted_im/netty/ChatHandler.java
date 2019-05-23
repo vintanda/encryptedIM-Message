@@ -11,6 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.linux.encrypted_im.encryptedUtils.CreateKeyUtil;
 import org.linux.encrypted_im.encryptedUtils.RSAUtil;
 import org.linux.encrypted_im.enums.MsgActionEnum;
+import org.linux.encrypted_im.idworker.Sid;
 import org.linux.encrypted_im.service.UserService;
 import org.linux.encrypted_im.utils.JSONUtils;
 import org.linux.encrypted_im.utils.SpringUtil;
@@ -53,7 +54,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             // 2.1 当websocket第一次open的时候，初始化channel，把channel和userId进行关联
             String senderId = dataContent.getChatMsg().getSenderId();
             String senderPublicKey = dataContent.getExtand();
-            System.out.println("senderPublicKey: " + senderPublicKey);
+            System.out.println("senderPublicKey: " + Sid.next());
             UserChannelRel.put(senderId, currentChannel);
 
             // 测试
@@ -76,8 +77,17 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             String encryptedAESKey = RSAUtil.publicEncrypt(aesKeyForChat,
                                                     RSAUtil.getPublicKey(publicKey));
 
+            DataContent dataContentMsg = new DataContent();
+            dataContentMsg.setAction(MsgActionEnum.AES_KEY.type);
+            ChatMsg chatMsg = new ChatMsg();
+            chatMsg.setMsg(publicKey);
+            dataContentMsg.setChatMsg(chatMsg);
+            dataContentMsg.setExtand(encryptedAESKey);
             System.out.println("RSA加密后的AES秘钥是：" + encryptedAESKey);
-            currentChannel.writeAndFlush(new TextWebSocketFrame(encryptedAESKey));
+            AESKeys.put(currentChannel, encryptedAESKey);
+            AESKeys.output();
+            currentChannel.writeAndFlush(new TextWebSocketFrame(
+                                    JSONUtils.objectToJson(dataContentMsg)));
 
         } else if (action == MsgActionEnum.CHAT.type) {
             // 2.2 聊天类型的消息，把聊天记录保存到数据库，同时标记是否被接受者接收到【标记未读】
@@ -154,6 +164,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         // 客户端断开连接时，clientGroup会自动将客户端的channel进行移除
 //        clients.remove(ctx.channel());
+        AESKeys.remove(ctx.channel());
         System.out.println("客户端断开连接，相应channel的长id为： " + ctx.channel().id().asLongText());
         System.out.println("客户端断开连接，相应channel的短id为： " + ctx.channel().id().asShortText());
     }

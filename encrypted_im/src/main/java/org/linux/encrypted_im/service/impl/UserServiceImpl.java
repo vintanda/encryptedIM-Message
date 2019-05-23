@@ -104,7 +104,7 @@ public class UserServiceImpl implements UserService {
         // 为每个用户生成一个唯一的二维码
         String qrCodePath = "C://user" + userId + "qrcode.png";
         // message_qrcode:[username]
-        qrCodeUtils.createQRCode(qrCodePath, "message_qrcode:" + user.getUsername());
+//        qrCodeUtils.createQRCode(qrCodePath, "message_qrcode:" + user.getUsername());
         user.setQrcode("");
         user.setId(userId);
 
@@ -272,10 +272,12 @@ public class UserServiceImpl implements UserService {
         msgDB.setCreateTime(new Date());
         msgDB.setSignFlag(MsgSignFlagEnum.unsign.type);
 
+        String key = msgId + chatMsg.getSenderId();
+        System.out.println("AES加密存储KEY：" + key);
+
         // 聊天记录加密方式 msgId+senderId拼接后的结果作为加密秘钥
         try {
-            String encryptedMsg = Hex.encodeHexString(
-                    AESUtil.encrypt(chatMsg.getMsg(), msgId + chatMsg.getSenderId()));
+            String encryptedMsg = AESUtil.encrypt(chatMsg.getMsg(), key);
             msgDB.setMsg(encryptedMsg);
             System.out.println("加密存储的聊天消息为：" + encryptedMsg);
         } catch (Exception e) {
@@ -290,5 +292,37 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateMsgSigned(List<String> msgIdList) {
         usersMapperCustom.batchUpdateMsgSigned(msgIdList);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<org.linux.encrypted_im.entity.ChatMsg> getUnReadMsgList(String acceptUserId) {
+
+        System.out.println("===================== getUnReadMsgList =====================");
+        ChatMsgExample example = new ChatMsgExample();
+        ChatMsgExample.Criteria criteria = example.createCriteria();
+        criteria.andAcceptUserIdEqualTo(acceptUserId);
+        criteria.andSignFlagEqualTo(0);
+
+        List<org.linux.encrypted_im.entity.ChatMsg> chatMsgs = chatMsgMapper.selectByExample(example);
+
+        // 解密
+        for (int i = 0;i < chatMsgs.size();i++) {
+            try {
+                org.linux.encrypted_im.entity.ChatMsg chatMsg = chatMsgs.get(i);
+                System.out.println("数据库中读出的加密消息内容：" + chatMsg.getMsg());
+                String key = chatMsg.getId() + chatMsg.getSendUserId();
+                System.out.println("AES解密KEY：" + key);
+                String decodeMsg = AESUtil.decrypt(chatMsg.getMsg(),
+                                        chatMsg.getId() + chatMsg.getSendUserId());
+                System.out.println("decodeMsg：" + decodeMsg);
+                chatMsg.setMsg(decodeMsg);
+                chatMsgs.set(i, chatMsg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return chatMsgs;
     }
 }
