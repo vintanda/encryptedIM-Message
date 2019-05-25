@@ -181,6 +181,9 @@
 					
 					// 每次建立连接时，获取用户未读消息
 					fetchUnReadMsg();
+					
+					// 定时发送心跳
+					setInterval("CHAT.keepalive()", 10000);
 				},
 				wsonmessage: function(e) {
 					console.log("接收到消息..." + e.data);
@@ -238,6 +241,20 @@
 					var dataContentSign = new app.DataContent(app.SIGNED, null, unSignedMsgIds);
 					// 发送批量签收的请求
 					CHAT.chat(JSON.stringify(dataContentSign));
+				},
+				keepalive: function() {
+					console.log("keepalive方法....")
+					// 构建对象
+					var dataContent = new app.DataContent(app.KEEPALIVE, null, null);
+					
+					// 发送心跳包
+					CHAT.chat(JSON.stringify(dataContent));
+					
+					// 定时执行函数
+					// 未读消息定时刷新
+					fetchUnReadMsg();
+					// 通讯录列表定时刷新
+					fetchContractList();
 				}
 			};
 			
