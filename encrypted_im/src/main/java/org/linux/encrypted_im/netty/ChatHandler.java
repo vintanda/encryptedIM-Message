@@ -27,7 +27,7 @@ import java.util.Map;
 public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
     // 可以将一组channel都保存到ChannelGroup中，用于记录和管理所有客户端的channel
-    private static ChannelGroup users = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    public static ChannelGroup users = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame) throws Exception {
         // 获取客户端传入的信息
@@ -148,6 +148,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
         } else if (action == MsgActionEnum.KEEPALIVE.type) {
             // 2.4 心跳类型消息
+            System.out.println("收到来自channel[" + currentChannel.id().asShortText() + "]的心跳包");
         }
     }
 
