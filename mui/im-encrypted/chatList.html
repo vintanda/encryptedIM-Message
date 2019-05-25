@@ -43,13 +43,16 @@
 			</ul>
 			
 			<ul id="ul_chatSnapshot" class="mui-table-view">
-				<!--<li class="mui-table-view-cell mui-media">
-					<div class="mui-media-body">
+				<li class="mui-table-view-cell mui-media">
+					<!--<div class="mui-slider-right mui-disabled">
+						<a class="mui-btn mui-btn-green">删除</a>
+					</div>
+					<div class="mui-slider-handle mui-media-body">
 						<img class="mui-media-object mui-pull-left" src="css/registLogin/default.jpg" />
 							<span class="red-point">aaa</span>
 						<p class="mui-ellipsis">，。</p>
-					</div>
-				</li>-->
+					</div>-->
+				</li>
 			</ul>
 		</div>
 		
@@ -95,13 +98,34 @@
 							friendNickname: friendNickname
 						}
 					});
+					
+					var me = app.getUserGlobalInfo();
+					// 标记未读为已读
+					readUserChatSnapshot(me.id, friendUserId);
+					// 重新渲染一次快照列表
+					loadingChatSnapshot();
+				})
+				
+				// 左滑删除聊天快照
+				mui("#ul_chatSnapshot").on("tap", "#link_delChatRecord", function() {
+					var me = this;	// a 标签
+					
+					// 获取朋友id
+					var friendUserId = me.getAttribute("friendUserId");
+					
+					// 删除本地聊天记录
+					app.deleteUserChatHistory(user.id, friendUserId);
+					
+					// 删除本地聊天快早
+					app.deleteUserChatSnapshot(user.id, friendUserId);
+					
+					// 移除当前用户操作的dom节点
+					// 获取li标签
+					var li = me.parentNode.parentNode;
+					var ul_chatSnapshot = document.getElementById("ul_chatSnapshot");
+					ul_chatSnapshot.removeChild(li);
 				});
 				
-				var me = app.getUserGlobalInfo();
-				// 标记未读为已读
-				readUserChatSnapshot(me.id, friendUserId);
-				// 重新渲染一次快照列表
-				loadingChatSnapshot();
 			});
 			
 			// 构建聊天业务chat
@@ -283,24 +307,17 @@
 						readHtmlAfter = '</span>';
 					}
 					
-					chatItemHtml = '<li friendUserId="' + friendId + '" friendNickname="' + friend.friendNickname + '" friendFaceImage="css/registLogin/default.jpg" class="chat-with-friend mui-table-view-cell mui-media">' + 
-										'<div class="mui-media-body">' +
-											'<img class="mui-media-object mui-pull-left" src="css/registLogin/default.jpg" />' +
+					chatItemHtml =  '<li friendUserId="' + friendId + '" friendNickname="' + friend.friendNickname + '" friendFaceImage="css/registLogin/default.jpg" class="chat-with-friend mui-table-view-cell mui-media">' +
+										'<div class="mui-slider-right mui-disabled">' +
+											'<a id="link_delChatRecord" friendUserId="' + friendId + '" class="mui-btn mui-btn-red">删除</a>' +
+										'</div>' +
+										'<div class="mui-slider-handle mui-media-body ">' +
+								            '<img class="mui-media-object mui-pull-left" src="css/registLogin/default.jpg" />' +
 												readHtmlBefore + friend.friendNickname + readHtmlAfter +
 											'<p class="mui-ellipsis">' + chatItem.msg + '</p>' +
-										'</div>' +
-									'</li>';
+							            '</div>' +
+								    '</li>';
 					
-//					chatItemHtml =  '<li friendUserId="' + friendId + '" friendNickname="' + friend.friendNickname + '" friendFaceImage="css/registLogin/default.jpg" class="chat-with-friend mui-table-view-cell mui-media">' +
-//										'<div class="mui-slider-right mui-disabled">' +
-//											'<a id="link_delChatRecord" friendUserId="' + friendId + '" class="mui-btn mui-btn-red">删除</a>' +
-//										'</div>' +
-//										'<div class="mui-slider-handle mui-media-body ">' +
-//								            '<img class="mui-media-object mui-pull-left" src="' + app.imgServerUrl + friend.friendFaceImage + '"/>' +
-//								            	readHtmlBefore + friend.friendNickname + readHtmlAfter + 
-//								            '<p class="mui-ellipsis">' + chatItem.msg + '</p>' +
-//							            '</div>' +
-//								    '</li>';
 					ul_chatSnapshot.insertAdjacentHTML('beforeend', chatItemHtml);
 				}
 			}
