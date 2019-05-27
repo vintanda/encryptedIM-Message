@@ -99,11 +99,6 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
             System.out.println("消息明文为：" + msgText);
 
-            // 把聊天记录加密存储到数据库，同时标记未读
-            UserService userService = (UserService) SpringUtil.getBean("userServiceImpl");
-            String msgId = userService.saveMsg(chatMsg);
-            chatMsg.setMsgId(msgId);
-
             DataContent dataContentMsg = new DataContent();
             dataContentMsg.setChatMsg(chatMsg);
 
@@ -112,6 +107,10 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             Channel receiverChannel = UserChannelRel.get(receiverId);
             if (receiverChannel == null) {
                 // 用户离线
+                // 把聊天记录加密存储到数据库，同时标记未读
+                UserService userService = (UserService) SpringUtil.getBean("userServiceImpl");
+                String msgId = userService.saveMsg(chatMsg);
+                chatMsg.setMsgId(msgId);
             } else {
                 // 当receiverChannel不为空的时候，从ChannelGroup去查找对应的channel是否存在
                 Channel findChannel = users.find(receiverChannel.id());
@@ -121,6 +120,9 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
                             new TextWebSocketFrame(JSONUtils.objectToJson(dataContentMsg)));
                 } else {
                     // 用户离线
+                    UserService userService = (UserService) SpringUtil.getBean("userServiceImpl");
+                    String msgId = userService.saveMsg(chatMsg);
+                    chatMsg.setMsgId(msgId);
                 }
             }
 

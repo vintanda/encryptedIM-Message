@@ -2,7 +2,6 @@ package org.linux.encrypted_im.service.impl;
 
 import io.netty.channel.Channel;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
-import org.apache.commons.codec.binary.Hex;
 import org.linux.encrypted_im.dao.*;
 import org.linux.encrypted_im.encryptedUtils.AESUtil;
 import org.linux.encrypted_im.entity.*;
